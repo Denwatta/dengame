@@ -51,6 +51,7 @@ public class ItemData : MonoBehaviour
                 if (PlayerScript.hp <3)
                 {
                     PlayerScript.hp++;
+                    PlayerPrefs.SetInt("PlayrHP",PlayerScript.hp);
                 }
             }
             else if (type == ItemType.light)
@@ -63,6 +64,7 @@ public class ItemData : MonoBehaviour
             itemBody.gravityScale = 2.5f;
             itemBody.AddForce(new Vector2(0,6),ForceMode2D.Impulse);
             Destroy(gameObject,0.5f);
+            SaveDataManager.SetArrangeId(arrangeId, gameObject.tag);
         }
     }
 }

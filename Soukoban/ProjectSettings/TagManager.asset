@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Box
   - Goal
+  - Lasergun
+  - Damage
+  - Oneway
+  - Dummy
+  - SwitchDoor
   layers:
   - Default
   - TransparentFX
