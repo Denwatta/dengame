@@ -10,13 +10,13 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb2d;
     float speed = 5.0f;
     float InputStay = 1.0f;
+    float Modifytime = 0.22f;
     public GameManager gameManager;
     Animator animator;
     int direction = 0;
     public bool isGameover = false;
     public int hasKeys = 0;
     public OnewayboardScript oneway;
-    public SwitchDoor switchDoor;
     
 
     void Start()
@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(hasKeys);
+        //Debug.Log(hasKeys);
         InputStay += Time.deltaTime;
         if (InputStay > Moveduration && gameManager.isClear == false)
         {
@@ -58,6 +58,10 @@ public class PlayerController : MonoBehaviour
                 direction = 1;
             }
         }
+        if (InputStay >= Modifytime)
+        {
+            transform.position = new Vector3(Mathf.Round(transform.position.x),Mathf.Round(transform.position.y),transform.position.z);      
+        } 
         animator.SetInteger("Direction", direction);        
     }
 
@@ -65,7 +69,7 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 startPosition = transform.position;
         Vector3 targetPosition = startPosition + playerdirection * Movedistance;
-        float elapsedTime = 0f;
+        float elapsedTime = 0.01f;
         rb2d.velocity = playerdirection*speed;
         while (elapsedTime < Moveduration)
         {
